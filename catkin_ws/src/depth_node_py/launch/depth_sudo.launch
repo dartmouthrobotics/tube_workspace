@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="depth_node_py" name="depth" type="depth.py" launch-prefix="sudo" output="screen"/>
+</launch>

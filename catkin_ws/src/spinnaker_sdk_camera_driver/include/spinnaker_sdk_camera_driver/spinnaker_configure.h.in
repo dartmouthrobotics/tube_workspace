@@ -1,0 +1,2 @@
+#cmakedefine trigger_msgs_FOUND
+#define OPENCV_VERSION @OpenCV_VERSION_MAJOR@

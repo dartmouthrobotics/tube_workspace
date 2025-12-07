@@ -1,0 +1,5 @@
+# See https://wiki.archlinux.org/index.php/udev#About_udev_rules.
+# On precise, for some reason, USER and GROUP are getting ignored.
+# So setting mode = 0666 for now
+
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb-serial", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="0002", ATTRS{serial}=="0000:00:14.0", MODE:="0666", GROUP:="dialout"

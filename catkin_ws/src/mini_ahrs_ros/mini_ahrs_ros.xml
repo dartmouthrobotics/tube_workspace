@@ -1,0 +1,7 @@
+<library path="lib/libmini_ahrs_ros">
+  <class name="mini_ahrs_ros/MiniAHRSNodelet" type="mini_ahrs_ros::MiniAHRSNodelet" base_class_type="nodelet::Nodelet">
+    <description> 
+        Wraps the Dartmouth MiniAHRS linux driver with a ROS nodelet.
+    </description>
+  </class>
+</library>

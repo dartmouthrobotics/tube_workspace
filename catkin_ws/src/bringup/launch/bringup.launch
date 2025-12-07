@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="usb_port" default="/dev/ttyUSB0"/>
+  <include file="$(find mini_ahrs_ros)/launch/mini_ahrs_standalone.launch">
+    <arg name="usb_port" value="$(arg usb_port)"/>
+  </include>
+    <node pkg="depth_node_py" type="run_node.sh" name="depth"/>
+  <include file="$(find spinnaker_sdk_camera_driver)/launch/node_acquisition.launch"/>
+</launch>
+
+
