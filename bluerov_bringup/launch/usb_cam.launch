@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="img_format" default="mjpeg" /> <!-- 0: mjpeg, 1: yuyv -->
+
+  <group if="$(eval arg('img_format') == 'yuyv')">
+  <node pkg="usb_cam" name="usb_cam" type="usb_cam_node" output="screen">
+    <param name="pixel_format" value="yuyv" />
+    <param name="image_width" value="800" />
+    <param name="image_height" value="600" />
+  </node>
+  </group>
+
+  <group if="$(eval arg('img_format') == 'mjpeg')">
+  <node pkg="usb_cam" name="usb_cam" type="usb_cam_node" output="screen">
+    <param name="image_width" value="1920" />
+    <param name="image_height" value="1080" />
+    <param name="pixel_format" value="mjpeg" />
+    <param name="color_format" value="yuv420p" />
+  </node>
+	  <!--
+  <node pkg="mjpeg_cam" name="usb_cam" type="mjpeg_cam" output="screen">
+    <param name="width" value="1920" />
+    <param name="height" value="1080" />
+    <param name="framerate" value="15" />
+    <param name="autoexposure" value="false" />
+    <param name="exposure" value="175" />
+  </node>
+	 -->
+  </group>
+
+</launch>

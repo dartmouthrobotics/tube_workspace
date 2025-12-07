@@ -1,0 +1,27 @@
+<launch>
+
+<!--
+<arg name="bg_index"/>
+-->
+<arg name="bag.name" default="/home/$(env USER)/data/$(optenv EXPERIMENT tank)"/>
+
+<arg name="bag.topics"
+     default=
+     "
+/sonar_3d/raw_data
+/sonar_3d/raw_data_multibyte
+/camera_array/cam0/image_raw/compressed
+/camera_array/cam0/camera_info
+/mini_ahrs_ros/imu
+/mini_ahrs_ros/magnetic_field
+/mini_ahrs_ros/temperature
+/tf
+/tf_static
+/bar30/depth
+/bar30/pressure
+/bar30/temperature
+
+     "/>
+
+  <node pkg="rosbag" type="record" name="$(anon record)" args="--output-prefix=$(arg bag.name) $(arg bag.topics)" />
+</launch>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <name>bluerov_bringup</name>
+  <version>1.0.0</version>
+  <description>The bluerov_bringup package to start necessary nodes for the bluerov.</description>
+
+  <maintainer email="alberto.quattrini.li@dartmouth.edu">Alberto Quattrini Li</maintainer>
+
+
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>MIT</license>
+
+  <!-- Url tags are optional, but mutiple are allowed, one per tag -->
+  <!-- Optional attribute type can be: website, bugtracker, or repository -->
+  <!-- Example: -->
+  <!-- <url type="website">http://wiki.ros.org/bluerov_bringup</url> -->
+
+
+  <author email="alberto.quattrini.li@dartmouth.edu">Alberto Quattrini Li</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>gscam</run_depend>
+  <run_depend>audio_capture</run_depend>
+</package>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<launch>
+  <!-- roscore automatically started by roslaunch -->
+  <arg name="record" default="1" />
+  <arg name="publish_gstreamer_to_ros" default="0" />
+  <arg name="bag_file_index" />
+
+  <!-- start publishing transforms -->
+  <!--include file="$(find bluerov)/launch/description.launch" /-->
+
+  <!-- start mavlink -->
+  <include file="$(
+
+
+  <!-- start imu odometry -->
+  <!--<include file="$(find bluerov)/launch/imu_odom.launch" /> -->
+
+  <!--include file="$(find audio_capture)/launch/capture_udp.launch" /-->
+
+  <!-- only publish the gstreamer stream to ros if we are on land, not on the robot -->
+  <group if="$(eval arg('publish_gstreamer_to_ros') == 1)">
+    <include file="$(find bluerov_bringup)/launch/lowhd_camera_nodelet.launch" />
+  </group>
+
+  <group if="$(arg record)">
+    <include file="$(find bluerov_bringup)/launch/logger.launch">
+	<arg name="bg_index" value="$(arg bag_file_index)"/>
+    </include>
+  </group>
+
+  <!-- Run a script to check for connections to 
+      the robot, and print a descriptive error message
+      if no connection is made after a set time. -->
+  <!--node pkg="bluerov_bringup" name="connection_checker" type="connection_checker.py" output="screen"/-->
+  <!--node pkg="bluerov_bringup" name="external_depth" type="externaldepth.py" output="screen"/-->
+
+  <!-- Echosounder nodelet -->
+  <!--include file="$(find ping_nodelet)/launch/ping_echo_sounder.launch" /-->
+  <node pkg="bluerov_bringup" name="light_act" type="new_light_control.py" output="screen" />
+  <!--node pkg="bluerov_bringup" name="light_act" type="single_light_on_2.py" output="screen" /-->
+
+
+  <include file="$(find bluerov_bringup)/launch/usb_cam.launch" />
+  <!--
+  <include file="$(find spinnaker_camera_driver)/launch/camera.launch" />
+  -->
+
+  <!-- node pkg="onboot_auto_sensor_logging" type="kill_gemini_node.py" name="kill_gemini_node" output="screen" respawn="true"/ -->
+
+  <node pkg="waterlinked_a50_ros_driver" type="publisher.py" name="dvl_node" output="screen" respawn="true">
+    <param name="ip" value="192.168.2.95" />
+    <param name="do_log_raw_data" value="True"/>
+  </node>
+
+  <include file="$(find apriltag_ros)/launch/continuous_detection.launch">
+    <arg name="image_topic" value="image_raw" />
+    <arg name="camera_name" value="usb_cam" />
+  </include> 
+
+  <!--
+  <node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/usb_cam/image_raw raw out:=/usb_cam/image_raw" />
+  -->
+  
+</launch>

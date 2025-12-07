@@ -1,0 +1,21 @@
+<launch>
+  <!-- The GStreamer framerate needs to be an integral fraction -->
+  <arg name="FPS" default="30/1"/>
+  <arg name="port" default="5602"/>
+
+  <node pkg="nodelet" type="nodelet"
+    name="gscam_standalone_nodelet" args="manager"
+    output="screen"/>
+
+  <node pkg="nodelet" type="nodelet"
+    name="GSCamNodelet" 
+    args="load gscam/GSCamNodelet gscam_standalone_nodelet" 
+    output="screen">
+    <param name="camera_name" value="default"/>
+    <param name="gscam_config" value="udpsrc port=$(arg port) ! application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, framerate=$(arg FPS) ! rtph264depay ! avdec_h264 ! queue ! videoconvert"/>
+    <param name="frame_id" value="v4l_frame"/>
+    <param name="sync_sink" value="false"/>
+    <param name="camera_info_url" value="package://bluerov_bringup/param/pool.yaml"/>
+    <param name="use_gst_timestamps" value="true"/>
+  </node>
+</launch>
