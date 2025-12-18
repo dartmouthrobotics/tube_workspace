@@ -1,0 +1,14 @@
+<launch>
+  <arg name="rqt" default="false"/>
+  <arg name="sonar" default="true"/>
+  
+  <!-- Start the sonar node - let it auto-discover -->
+  <node if="$(arg sonar)" 
+        name="sonar_oculus_node" 
+        pkg="sonar_oculus" 
+        type="sonar_oculus_node" 
+        output="screen">
+    <!-- Don't set model parameter - let it auto-discover -->
+    <param name="frame" type="string" value="sonar"/>
+  </node>
+</launch>

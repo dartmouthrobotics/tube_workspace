@@ -1,0 +1,21 @@
+<launch>
+  <!-- Start the sonar node -->
+  <node name="sonar_oculus_node" 
+        pkg="sonar_oculus" 
+        type="sonar_oculus_node" 
+        output="screen">
+    <param name="frame" type="string" value="sonar"/>
+  </node>
+  
+  <!-- Republish compressed image -->
+  <node name="sonar_image_republisher" 
+        pkg="sonar_oculus" 
+        type="image_republisher.py" 
+        output="screen"/>
+  
+  <!-- Launch image viewer -->
+  <node name="image_view" 
+        pkg="rqt_image_view" 
+        type="rqt_image_view"
+        args="/sonar_image"/>
+</launch>

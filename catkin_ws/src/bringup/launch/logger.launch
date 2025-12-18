@@ -1,15 +1,8 @@
 <launch>
-
-<!--
-<arg name="bg_index"/>
--->
-<arg name="bag.name" default="/home/$(env USER)/data/$(optenv EXPERIMENT tank)"/>
-
-<arg name="bag.topics"
-     default=
-     "
-/sonar_3d/raw_data
-/sonar_3d/raw_data_multibyte
+  <arg name="bag.name" default="/home/$(env USER)/data/$(optenv EXPERIMENT tank)"/>
+  <arg name="bag.topics"
+       default="
+/sonar_oculus_node/M750d/ping
 /camera_array/cam0/image_raw/compressed
 /camera_array/cam0/camera_info
 /mini_ahrs_ros/imu
@@ -20,8 +13,6 @@
 /bar30/depth
 /bar30/pressure
 /bar30/temperature
-
-     "/>
-
+       "/>
   <node pkg="rosbag" type="record" name="$(anon record)" args="--output-prefix=$(arg bag.name) $(arg bag.topics)" />
 </launch>

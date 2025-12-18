@@ -1,8 +1,8 @@
 cam_ids:
-- 19432830
+- 23477412
 cam_aliases:
 - cam0
-master_cam: 19432830
+master_cam: 23477412
 skip: 20
 delay: 1.0
 

@@ -1,0 +1,81 @@
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# User-specific files
+.bash_history
+.bash_logout
+.bashrc
+.profile
+.sudo_as_admin_successful
+.sys1og.conf
+
+# Cache and config directories
+.cache/
+.config/
+.gnupg/
+.local/
+
+# Build directories
+build/
+devel/
+install/
+bin/
+lib/
+msg_gen/
+srv_gen/
+msg/*Action.msg
+msg/*ActionFeedback.msg
+msg/*ActionGoal.msg
+msg/*ActionResult.msg
+msg/*Feedback.msg
+msg/*Goal.msg
+msg/*Result.msg
+msg/_*.py
+build_isolated/
+devel_isolated/
+
+# ROS
+*.pyc
+__pycache__/
+CATKIN_IGNORE
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+log/
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# Python
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Bag files 
+# *.bag

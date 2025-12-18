@@ -1,12 +1,28 @@
 <?xml version="1.0"?>
-
 <launch>
+  <!-- IMU -->
   <arg name="usb_port" default="/dev/ttyUSB0"/>
   <include file="$(find mini_ahrs_ros)/launch/mini_ahrs_standalone.launch">
     <arg name="usb_port" value="$(arg usb_port)"/>
   </include>
-    <node pkg="depth_node_py" type="run_node.sh" name="depth"/>
+  
+  <!-- Depth Sensor -->
+  <node pkg="depth_node_py" type="run_node.sh" name="depth"/>
+  
+  <!-- Camera -->
   <include file="$(find spinnaker_sdk_camera_driver)/launch/node_acquisition.launch"/>
+  
+  <!-- Oculus M750d Sonar -->
+  <node name="sonar_oculus_node" 
+        pkg="sonar_oculus" 
+        type="sonar_oculus_node" 
+        output="screen">
+    <param name="frame" type="string" value="sonar"/>
+  </node>
+  
+  <!-- Sonar Image Republisher (for visualization) -->
+  <node name="sonar_image_republisher" 
+        pkg="sonar_oculus" 
+        type="image_republisher.py" 
+        output="screen"/>
 </launch>
-
-
