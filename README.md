@@ -402,7 +402,7 @@ sudo chown -R $USER:$USER ~/data
 
 ---
 
-## Troubleshooting
+## Quick Check Manual
 
 ### Sonar Not Publishing Data
 
@@ -439,10 +439,10 @@ journalctl -u robot-sensors.service | grep -A 5 "Oculus"
 
 #### 4. Restart Services
 ```bash
-# Restart entire system
+# Restart 
 sudo systemctl restart robot-sensors.service
 
-# Or restart just sonar node
+# Or restart sonar node
 rosnode kill /sonar_oculus_node
 # Wait a few seconds, it will auto-restart
 ```
@@ -527,7 +527,7 @@ rosbag reindex ~/data/tank_YYYY-MM-DD-HH-MM-SS.bag.active
 
 ---
 
-## Useful Commands Summary
+## Useful Commands 
 
 ### System Status
 | Task | Command |
@@ -674,14 +674,6 @@ sudo systemctl restart robot-sensors.service
 4. Update systemd service if needed
 
 ---
-
-## Support
-
-For issues or questions:
-1. Check service logs: `journalctl -u robot-sensors.service -f`
-2. Verify network configuration
-3. Test sensors individually
-4. Check ROS topic rates
 
 **Common Log Locations:**
 - Service logs: `journalctl -u robot-sensors.service`
