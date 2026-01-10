@@ -97,6 +97,27 @@ ip addr show eno1
 ping 192.168.2.96
 ```
 
+### Network Bridge (make ethernet ports have same ip address)
+```bash
+ip link
+sudo nano /etc/netplan/01-bridge.yaml
+## in the yaml (change 175 to the ip you want)
+ version: 2
+  renderer: networkd
+  ethernets:
+    enp2s0: {}
+    enp3s0: {}
+  bridges:
+    br0:
+      interfaces: [enp2s0, enp3s0]
+      addresses: [192.168.2.175/24]
+      nameservers:
+        addresses: [8.8.8.8, 1.1.1.1]
+##
+sudo netplan apply
+ping 192.168.2.175 # test
+```
+
 ---
 
 ## ROS Topics Verification
