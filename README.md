@@ -102,7 +102,8 @@ ping 192.168.2.96
 ip link
 sudo nano /etc/netplan/01-bridge.yaml
 ## in the yaml (change 175 to the ip you want)
- version: 2
+network:
+  version: 2
   renderer: networkd
   ethernets:
     enp2s0: {}
