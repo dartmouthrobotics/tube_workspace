@@ -1,0 +1,21 @@
+[Unit]
+Description=ROS Bringup Service
+After=network-online.target bringup-network.service
+Requires=bringup-network.service
+
+[Service]
+Type=simple
+User=oem
+Group=oem
+Environment="HOME=/home/oem"
+Environment="ROS_MASTER_URI=http://192.168.2.185:11311"
+#Environment="ROS_HOSTNAME=localhost"
+Environment="ROS_IP=192.168.2.185"
+ExecStartPre=/bin/sleep 10
+ExecStart=/bin/bash /home/oem/catkin_ws/src/bringup/boot.sh
+WorkingDirectory=/home/oem
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=ROS Bringup Network Setup
+After=network-online.target
+Wants=network-online.target
+Before=bringup.service
+
+[Service]
+Type=oneshot
+ExecStart=-/sbin/ip route add 224.0.0.96/32 dev br0
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
